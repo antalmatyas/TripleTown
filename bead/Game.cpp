@@ -11,6 +11,12 @@ class Game
     int maxValue;
     vector<string> sequence;
 public:
+    Game(int _row, int _col, vector<string> _sequence)
+    {
+        this->createMap(_row, _col);
+        this->sequence = _sequence;
+        this->maxValue = 0;
+    }
     vector<vector<string>> getGameMap()
     {
         return this->gameMap;
@@ -18,10 +24,6 @@ public:
     int getMaxValue()
     {
         return this->maxValue;
-    }
-    void setSequence(vector<string> _sequence)
-    {
-        this->sequence = _sequence;
     }
     void createMap(int rows, int cols)
     {
@@ -148,7 +150,7 @@ public:
         }
         return inList;
     }
-    void play(int currentDepth)
+    void play(int currentDepth = 0)
     {
         bool canMove = false;
             for (size_t i = 0; i < gameMap.size(); i++)
