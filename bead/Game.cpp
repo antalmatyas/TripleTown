@@ -9,7 +9,6 @@ class Game
 {
     vector<vector<string>> gameMap;
     int maxValue;
-    int maxStep;
     vector<string> sequence;
 public:
     vector<vector<string>> getGameMap()
@@ -19,10 +18,6 @@ public:
     int getMaxValue()
     {
         return this->maxValue;
-    }
-    void setMaxStep(int _maxStep)
-    {
-        this->maxStep = _maxStep;
     }
     void setSequence(vector<string> _sequence)
     {
@@ -180,7 +175,7 @@ public:
             if (currentDepth-1 > this->maxValue)
             {
                 this->maxValue = currentDepth-1;
-                cout << "current max map: " << currentDepth-1 << endl;
+                cout << "current max step: " << currentDepth-1 << endl;
                 showMap();
             }
         }
