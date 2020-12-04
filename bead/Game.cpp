@@ -8,7 +8,26 @@ using namespace std;
 class Game
 {
     vector<vector<string>> gameMap;
+    int maxValue;
+    int maxStep;
+    vector<string> sequence;
 public:
+    vector<vector<string>> getGameMap()
+    {
+        return this->gameMap;
+    }
+    int getMaxValue()
+    {
+        return this->maxValue;
+    }
+    void setMaxStep(int _maxStep)
+    {
+        this->maxStep = _maxStep;
+    }
+    void setSequence(vector<string> _sequence)
+    {
+        this->sequence = _sequence;
+    }
     void createMap(int rows, int cols)
     {
         vector<string> row;
@@ -20,6 +39,7 @@ public:
         {
             this->gameMap.push_back(row);
         }
+        this->maxValue = 0;
     }
     void showMap()
     {
@@ -31,6 +51,7 @@ public:
             }
             cout << "\n" << endl;
         }
+        cout << "-----------------------------------" << endl;
     }
     string incrementField(string in)
     {
@@ -45,7 +66,7 @@ public:
         {
             this->gameMap[row][col] = elementType;
             checkUpgrade(row, col);
-            this->showMap();
+            //this->showMap();
         }
         else
         {
@@ -64,6 +85,7 @@ public:
                 this->gameMap[connectedList[i].first][connectedList[i].second] = "0";
             }
             gameMap[row][col] = incrementField(type);
+            checkUpgrade(row, col);
         }
     }
     void checkNeighbours(pair<int, int> node, vector<pair<int, int>> &connectedList)
@@ -79,7 +101,7 @@ public:
                     connectedList.push_back(nextNode);
                     checkNeighbours(nextNode, connectedList);
                 }
-                
+
             }
         }
         if(node.first - 1 >= 0)
@@ -130,5 +152,37 @@ public:
             }
         }
         return inList;
+    }
+    void play(int currentDepth)
+    {
+        bool canMove = false;
+            for (size_t i = 0; i < gameMap.size(); i++)
+            {
+                for (size_t j = 0; j < gameMap[0].size(); j++)
+                {
+                    if(gameMap[i][j] == "0")
+                    {
+                        canMove = true;
+                        vector<vector<string>> saveMapState = this->gameMap;
+                        vector<string> saveSequence = this->sequence;
+                        string currentElement = this->sequence[0];
+                        this->sequence.erase(this->sequence.begin());
+                        this->sequence.push_back(currentElement);
+                        addElement(i, j, currentElement);
+                        play(currentDepth+1);
+                        this->gameMap = saveMapState;
+                        this->sequence = saveSequence;
+                    }
+                }
+            }
+        if(!canMove)
+        {   
+            if (currentDepth-1 > this->maxValue)
+            {
+                this->maxValue = currentDepth-1;
+                cout << "current max map: " << currentDepth-1 << endl;
+                showMap();
+            }
+        }
     }
 };

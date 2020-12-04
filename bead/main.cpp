@@ -4,12 +4,12 @@ using namespace std;
 int main()
 {
     Game newGame;
-    newGame.createMap(4, 4);
+    newGame.createMap(3, 3);
     newGame.showMap();
-    newGame.addElement(0, 0, "A1");
-    newGame.addElement(0, 1, "A1");
-    newGame.addElement(1, 2, "A1");
-    newGame.addElement(2, 2, "A1");
-    newGame.addElement(0, 2, "A1");
+    newGame.setMaxStep(0);
+    vector<string> _sq{"A1", "B1", "C1"};
+    newGame.setSequence(_sq);
+    newGame.play(0);
+    cout << newGame.getMaxValue();
     return 0;
 }
