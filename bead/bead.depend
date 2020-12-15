@@ -1,16 +1,18 @@
 # depslib dependency file v1.0
-1607118576 source:c:\users\matyo\documents\github\kirsti\bead\game.cpp
+1608067309 source:c:\users\matyo\documents\github\kirsti\bead\game.cpp
 	<iostream>
 	<vector>
 	<string>
 	<sstream>
+	<fstream>
 
-1607105397 source:c:\users\matyo\documents\github\kirsti\bead\main.cpp
+1608067072 source:c:\users\matyo\documents\github\kirsti\bead\main.cpp
 	"Game.cpp"
 
-1607105413 c:\users\matyo\documents\github\kirsti\bead\game.cpp
+1608067137 c:\users\matyo\documents\github\kirsti\bead\game.cpp
 	<iostream>
 	<vector>
 	<string>
 	<sstream>
+	<fstream>
 

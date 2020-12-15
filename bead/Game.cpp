@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -11,15 +12,21 @@ class Game
     int maxValue;
     vector<string> sequence;
 public:
-    Game(int _row, int _col, vector<string> _sequence)
+    Game()
     {
-        this->createMap(_row, _col);
-        this->sequence = _sequence;
         this->maxValue = 0;
     }
     vector<vector<string>> getGameMap()
     {
         return this->gameMap;
+    }
+    void setGameMap(vector<vector<string>> _gameMap)
+    {
+        this->gameMap = _gameMap;
+    }
+    void setSequence(vector<string> _sequence)
+    {
+        this->sequence = _sequence;
     }
     int getMaxValue()
     {
@@ -37,6 +44,36 @@ public:
             this->gameMap.push_back(row);
         }
         this->maxValue = 0;
+    }
+    vector<string> splitLine(string line, string delimiter)
+    {
+        vector<string> lineVector;
+        int pos = 0;
+        while((pos = line.find(delimiter)) != string::npos)
+        {
+            lineVector.push_back(line.substr(0, pos));
+            line.erase(0, pos + delimiter.length());
+        }
+        lineVector.push_back(line);
+        return lineVector;
+    }
+    void importGame(string fileName)
+    {
+        ifstream in(fileName);
+        string sq;
+        getline(in, sq);
+        this->setSequence(splitLine(sq, ","));
+
+        string currentLine;
+        string currentElement;
+        vector<vector<string>> importMap;
+        while(in.good())
+        {
+            getline(in, currentLine);
+            importMap.push_back(splitLine(currentLine, ","));
+        }
+        this->setGameMap(importMap);
+        in.close();
     }
     void showMap()
     {
