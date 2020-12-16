@@ -20,14 +20,6 @@ public:
     {
         return this->gameMap;
     }
-    void setGameMap(vector<vector<string>> _gameMap)
-    {
-        this->gameMap = _gameMap;
-    }
-    void setSequence(vector<string> _sequence)
-    {
-        this->sequence = _sequence;
-    }
     int getMaxValue()
     {
         return this->maxValue;
@@ -62,7 +54,7 @@ public:
         ifstream in(fileName);
         string sq;
         getline(in, sq);
-        this->setSequence(splitLine(sq, ","));
+        this->sequence = splitLine(sq, ",");
 
         string currentLine;
         string currentElement;
@@ -72,7 +64,7 @@ public:
             getline(in, currentLine);
             importMap.push_back(splitLine(currentLine, ","));
         }
-        this->setGameMap(importMap);
+        this->gameMap = importMap;
         in.close();
     }
     void showMap()
