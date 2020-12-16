@@ -7,7 +7,7 @@ int main()
     newGame->importGame("testfile1.txt");
     newGame->showMap();
     newGame->play();
-    cout << newGame->getMaxValue();
+    cout << "The maximal amount of steps was: " << newGame->getMaxValue();
     newGame->~Game();
     return 0;
 }

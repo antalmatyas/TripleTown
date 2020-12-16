@@ -206,8 +206,10 @@ public:
             if (currentDepth-1 > this->maxValue)
             {
                 this->maxValue = currentDepth-1;
-                cout << "current max step: " << currentDepth-1 << endl;
+                cout << "Current max step: " << currentDepth-1 << endl;
+                cout << "With the map state: \n" << endl;
                 showMap();
+                cout << "Continuing..." << endl;
             }
         }
     }
