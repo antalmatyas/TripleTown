@@ -1,3 +1,3 @@
-# kirsti
+# TripleTown 
 
-hát ez egy ilyen izé... dolog
+Game based on the mobile game TripleTown, with a simple AI finding the most steps possible in a game.
